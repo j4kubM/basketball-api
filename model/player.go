@@ -3,6 +3,7 @@ package model
 import "time"
 
 type Player struct {
+	ID          int       `json:"id"`
 	FirstName   string    `json:"firstName"`
 	LastName    string    `json:"lastName"`
 	DateOfBirth time.Time `json:"dateOfBirth"`
@@ -12,8 +13,8 @@ type Player struct {
 }
 
 type Coach struct {
-	FirstName   string    `json:"firstName"`
-	LastName    string    `json:"lastName"`
-	DateOfBirth time.Time `json:"dateOfBirth"`
-	Nationality string    `json:"nationality"`
+	FirstName   string `json:"firstName"`
+	LastName    string `json:"lastName"`
+	DateOfBirth Date   `json:"dateOfBirth"`
+	Nationality string `json:"nationality"`
 }

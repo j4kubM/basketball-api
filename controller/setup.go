@@ -5,6 +5,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/j4kubM/basketball-api/handler"
+	_ "github.com/lib/pq"
 )
 
 func New() http.Handler {
