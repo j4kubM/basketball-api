@@ -7,6 +7,6 @@ import (
 	"github.com/j4kubM/basketball-api/mock"
 )
 
-func GetTeam(ctx *gin.Context) {
+func (h *BaseHandler) GetTeam(ctx *gin.Context) {
 	ctx.IndentedJSON(http.StatusOK, mock.Team1)
 }
