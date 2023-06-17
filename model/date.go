@@ -2,15 +2,14 @@ package model
 
 import (
 	"encoding/json"
-	"fmt"
 	"time"
 )
 
-const format = "dd-mm-yyyy"
+const format = "2006-01-02"
 
-type Date struct{ time.Time }
+type Date time.Time
 
-func (d *Date) UnmarshallJSON(data []byte) error {
+func (d *Date) UnmarshalJSON(data []byte) error {
 
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -18,7 +17,7 @@ func (d *Date) UnmarshallJSON(data []byte) error {
 	}
 
 	t, _ := time.Parse(format, v)
-	d = &Date{t}
+	*d = Date(t)
 	return nil
 }
 
@@ -26,6 +25,6 @@ func (d *Date) MarshallJSON() ([]byte, error) {
 	return []byte(d.String()), nil
 }
 
-func (d *Date) String() string {
-	return fmt.Sprintf("%q", d.Format(format))
+func (d Date) String() string {
+	return time.Time(d).Format(format)
 }

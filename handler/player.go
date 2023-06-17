@@ -6,6 +6,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 
+	"github.com/j4kubM/basketball-api/handler/request"
 	"github.com/j4kubM/basketball-api/model"
 )
 
@@ -45,4 +46,24 @@ func GetPlayersByTeamQuery(int) string {
 		WHERE teamId = 1;`
 
 	return query
+}
+
+type query string
+
+func createPlayerQuery(player model.PlayerRequest) query {
+	return query(fmt.Sprintf(`INSERT INTO players (firstName, lastName, height, number, nationality, teamId, dateOfBirth)
+	VALUES ('%s', '%s', '%d', '%d', '%s', 1, '%s');`, player.FirstName, player.LastName, player.Height, player.Number, player.Nationality, &player.DateOfBirth))
+}
+
+func (h *BaseHandler) CreatePlayer(ctx *gin.Context) {
+
+	req, err := request.ParseCreatePlayerRequest(ctx)
+	if err != nil {
+		ctx.Error(err)
+		http.Error(ctx.Writer, err.Error(), 401)
+	}
+
+	q := createPlayerQuery(req)
+	fmt.Println(q)
+	h.db.Query(string(q))
 }

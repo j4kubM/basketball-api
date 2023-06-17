@@ -28,6 +28,7 @@ func New() http.Handler {
 
 	router.GET("/team", h.GetTeam)
 	router.GET("/player", h.GetPlayers)
+	router.POST("/player", h.CreatePlayer)
 
 	return router
 }

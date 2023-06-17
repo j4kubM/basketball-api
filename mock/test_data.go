@@ -27,7 +27,7 @@ import (
 var Coach1 = model.Coach{
 	FirstName:   "Erik",
 	LastName:    "Spoelstra",
-	DateOfBirth: model.Date{time.Date(1970, 11, 1, 0, 0, 0, 0, time.UTC)},
+	DateOfBirth: model.Date(time.Date(1970, 11, 1, 0, 0, 0, 0, time.UTC)),
 	Nationality: "USA",
 }
 
